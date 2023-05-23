@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HttpServerMock.Core.Fluent
+namespace HttpServerMock.ContentType;
+
+public class ContentType
 {
-    internal class RouteBuilder
-    {
-    }
+    public string Name { get; init; }
+
+
 }

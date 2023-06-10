@@ -13,6 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpServerMock.ContentType", "HttpServerMock.ContentType\HttpServerMock.ContentType.csproj", "{CDE8B4D7-B978-40FD-A292-03DB77FF59FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpServerMock.Http", "HttpServerMock.Http\HttpServerMock.Http.csproj", "{E51BD136-BA44-4A8F-ADE0-73B653447C1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpServerMock.Https", "HttpServerMock.Https\HttpServerMock.Https.csproj", "{232A1D84-9C97-4352-99B7-43AB03F667C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0D14E793-3E4E-4AD6-90A7-EA54F5670827}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,11 +41,22 @@ Global
 		{CDE8B4D7-B978-40FD-A292-03DB77FF59FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDE8B4D7-B978-40FD-A292-03DB77FF59FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDE8B4D7-B978-40FD-A292-03DB77FF59FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E51BD136-BA44-4A8F-ADE0-73B653447C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E51BD136-BA44-4A8F-ADE0-73B653447C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E51BD136-BA44-4A8F-ADE0-73B653447C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E51BD136-BA44-4A8F-ADE0-73B653447C1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{232A1D84-9C97-4352-99B7-43AB03F667C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232A1D84-9C97-4352-99B7-43AB03F667C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232A1D84-9C97-4352-99B7-43AB03F667C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232A1D84-9C97-4352-99B7-43AB03F667C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6BFAFED3-F787-48A4-BA67-313492E8E93B}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{45863129-9F24-439A-9198-02188D2A441B} = {0D14E793-3E4E-4AD6-90A7-EA54F5670827}
 	EndGlobalSection
 EndGlobal

@@ -12,7 +12,7 @@ namespace HttpServerMock.Core.Fluent
 
         public RouteBuilder WithBody(string body)
         {
-            Response.Body = body;
+            
             return this;
         }
 
@@ -23,12 +23,12 @@ namespace HttpServerMock.Core.Fluent
 
         public RouteBuilder WithBodyAsJson(string body)
         {
-
+            return this;
         }
 
         public RouteBuilder WithBodyAsJson(object body)
         {
-
+            return this;
         }
     }
 }

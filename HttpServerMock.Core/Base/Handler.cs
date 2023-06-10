@@ -5,22 +5,24 @@ namespace HttpServerMock.Core;
 
 public class Handler : IHandler
 {
-    private readonly object locker = new();
+    private readonly object _locker = new();
     private readonly TimeSpan _requestProcessingDelay = TimeSpan.Zero;
-    protected IList<IRoute> routes;
+    private readonly IList<IRoute> _routes;
 
     public Handler()
     {
-        routes = new List<IRoute>();
+        _routes = new List<IRoute>();
+        Encoding = Encoding.Default;
     }
 
-    public IList<IRoute> Router => routes;
+    public IList<IRoute> Router => _routes;
+    public Encoding Encoding { get; }
 
-    public void AddRoute(IRoute route) => routes.Add(route);
+    public void AddRoute(IRoute route) => _routes.Add(route);
 
     public async void HandleRequest(HttpListenerContext context)
     {
-        lock (locker)
+        lock (_locker)
         {
             Task.Delay(_requestProcessingDelay).Wait();
         }
@@ -32,8 +34,8 @@ public class Handler : IHandler
                 if (route is null)
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                    var content = Encoding.UTF8.GetBytes("<html><body>Mock Server: page not found</body></html>");
-                    context.Response.OutputStream.Write(content, 0, content.Length);
+                    var content = Encoding.GetBytes("<html><body>Mock Server: page not found</body></html>");
+                    await context.Response.OutputStream.WriteAsync(content);
                 }
                 else
                 {
@@ -45,12 +47,16 @@ public class Handler : IHandler
         catch (Exception ex)
         {
             context.Response.StatusCode = (int)HttpStatusCode.OK;
-            var content = Encoding.UTF8.GetBytes($"{ConstHelper.ServerExceptionMessage} {ex.StackTrace}");
-            context.Response.OutputStream.Write(content, 0, content.Length);
+            var content = Encoding.GetBytes($"{ConstHelper.ServerExceptionMessage} {ex.StackTrace}");
+            await context.Response.OutputStream.WriteAsync(content);
         }
         finally
         {
             context.Response.Close();
         }
+    }
+
+    public void Dispose()
+    {
     }
 }

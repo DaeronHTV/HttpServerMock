@@ -5,22 +5,22 @@ namespace HttpServerMock.Core;
 
 public sealed class Request: BaseHttpObject, IDisposable
 {
-    private bool isDisposed = false;
+    private bool _isDisposed;
 
-    public string Url { get; set; }
+    public string? Url { get; private init; }
 
-    public string Query { get; set; }
+    public string? Query { get; private init; }
 
-    public HttpMethod Method { get; set; }
+    public HttpMethod? Method { get; private init; }
 
-    public Stream Body { get; set; }
+    public Stream? Body { get; private init; }
 
     public static Request ListenerToRequest(HttpListenerRequest request)
     {
         return new Request
         {
-            Url = request.Url.AbsolutePath,
-            Query = request.Url.Query,
+            Url = request.Url?.AbsolutePath,
+            Query = request.Url?.Query,
             Method = new HttpMethod(request.HttpMethod),
             ContentType = request.ContentType ?? "text/plain",
             Encoding = request.ContentEncoding,
@@ -33,7 +33,7 @@ public sealed class Request: BaseHttpObject, IDisposable
     {
         if (!request.HasEntityBody)
         {
-            return null!;
+            return default!;
         }
         return request.InputStream;
     }
@@ -50,9 +50,9 @@ public sealed class Request: BaseHttpObject, IDisposable
 
     public void Dispose()
     {
-        if (!isDisposed)
+        if (!_isDisposed)
         {
-            isDisposed = true;
+            _isDisposed = true;
             Body?.Dispose();
         }
     }

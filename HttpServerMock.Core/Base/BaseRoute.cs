@@ -5,16 +5,18 @@
 /// </summary>
 public sealed class BaseRoute : IRoute
 {
+    private const string TextPlain = "text/plain";
+    private const string Response = "Server is running !";
+    
     /// <inheritdoc/>
     public async Task<Response> GetResponse(Request request)
     {
-        var response = new Response()
+        return await Task.Run(() => new Response()
         {
             StatusCode = 200,   
-            Body = "Server is running !",
-            ContentType = "text/plain",
-        };
-        return response;
+            Body = Response,
+            ContentType = TextPlain,
+        });
     }
 
     /// <inheritdoc/>

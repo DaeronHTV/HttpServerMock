@@ -1,13 +1,16 @@
 ﻿using System.Net;
+using System.Text;
 
 namespace HttpServerMock.Core
 {
-    public interface IHandler
+    public interface IHandler: IDisposable
     {
-        void HandleRequest(HttpListenerContext context);
-
         IList<IRoute> Router { get; }
-
+        
+        Encoding Encoding { get; }
+        
+        void HandleRequest(HttpListenerContext context);
+        
         void AddRoute(IRoute route);
     }
 }
